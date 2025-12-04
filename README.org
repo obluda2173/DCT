@@ -2,7 +2,7 @@
 #+author: Erik An
 #+email: obluda2173@gmail.com
 #+date: <2025-12-04>
-#+lastmod: <2025-12-04 13:49>
+#+lastmod: <2025-12-04 14:05>
 #+options: num:t
 #+startup: overview
 
@@ -11,7 +11,7 @@ This project is a naive (unoptimised) JPEG encoder implemented in Julia.
 
 The project aim is to deepen my understanding of the *Discrete Cosine Transformation (DCT)*, which is part of my Linear Algebra course.
 
-**Note:** This project is not a university assignment in any way; it is a self-directed educational implementation to understand the mathematics behind image compression.
+*Note:* This project is not a university assignment in any way; it is a self-directed educational implementation to understand the mathematics behind image compression.
 
 * Most interesting
 The core of this project is the implementation of the *1-Dimensional DCT formula*.
@@ -19,6 +19,8 @@ The core of this project is the implementation of the *1-Dimensional DCT formula
 While libraries exist to do this, this project implements the raw summation manually to understand the frequency decomposition:
 
 $$C(u) = \alpha(u) \sum_{x=0}^{N-1}f(x)\cos\left[\dfrac{\pi(2x+1)u}{2N}\right]$$
+
+*Note.* Formula looks incorrect near the sum symbol, blame github latex render, it's actually valid.
 
 Where:
 - $u$: The frequency index (which wave pattern we are checking).
@@ -73,3 +75,8 @@ To run the encoder, ensure you have the required Julia packages (~Images~, ~File
 #+BEGIN_SRC bash
 julia main.jl
 #+END_SRC
+
+* Important!
+Note that this is a naive JPEG encoder. Thus it is not optimised, which you can notice in the size of compressed file being greater than size of original file. The goal of this project was again to deepen my understanding of DCT, at which I succeeded.
+
+Though size of compressed file is greater, the actuall DCT implementation is fully correct and working.
