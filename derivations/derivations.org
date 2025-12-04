@@ -1,0 +1,58 @@
+#+title: Mathematical Calculations
+#+author: Erik An
+#+email: obluda2173@gmail.com
+#+date: <2025-12-04>
+#+lastmod: <2025-12-04 12:28>
+#+options: num:t
+#+startup: overview
+
+#LATEX: \newpage
+* Discrete Cosine Transform
+$C(u) = \alpha(u) \sum_{x=0}^{N-1}f(x)cos\biggr[\dfrac{\pi(2x+1)u}{2N}\biggr]$
+
+* Inverse Discrete Cosine Transform
+
+** *Definition:*
+$C(u) = \alpha(u) \sum_{x=0}^{N-1}f(x)cos\biggr[\dfrac{\pi(2x+1)u}{2N}\biggr]$
+
+$\alpha(u) = \begin{cases}
+\sqrt{\frac{1}{N}} & \text{if } u = 0 \\
+\sqrt{\frac{2}{N}} & \text{if } u \neq 0
+\end{cases}$
+
+** *The Core Lemma:*
+
+$\sum_{u=0}^{N-1} \alpha^2(u) cos \biggr[ \dfrac{\pi(2x+1)u}{2N} \biggr] cos \biggr[ \dfrac{\pi(2k+1)u}{2N} \biggr] = \delta_x_,_k$
+
+where $\delta_x_,_k = 1$ if $x=k$ and $\delta_x_,_k = 0$ otherwise.
+
+** *Derivation*
+
+We multiply both sides of the forward equation by the basis function corresponding to index $k$, weighted by $\alpha(u)$, and sum over the frequency domain $u=0$ to $N-1$.
+
+$\sum_{u=0}^{N-1} \alpha(u) C(u) \cos\left[\dfrac{\pi(2k+1)u}{2N}\right] \\ = \sum_{u=0}^{N-1} \alpha(u) \left( \alpha(u) \sum_{x=0}^{N-1} f(x) \cos\left[\dfrac{\pi(2x+1)u}{2N}\right] \right) \cos\left[\dfrac{\pi(2k+1)u}{2N}\right] \\$
+
+
+Now rearranging.
+
+$\text{RHS} = \sum_{x=0}^{N-1} f(x) \left[ \sum_{u=0}^{N-1} \alpha^2(u) \cos\left[\dfrac{\pi(2x+1)u}{2N}\right] \cos\left[\dfrac{\pi(2k+1)u}{2N}\right] \right] \\$
+
+
+The inside term bracket is exactly the $\delta_x_,_k$ from /Definition/:
+
+$\left[ \sum_{u=0}^{N-1} \alpha^2(u) \cos\left[\dfrac{\pi(2x+1)u}{2N}\right] \cos\left[\dfrac{\pi(2k+1)u}{2N}\right] \right] = \delta_x_,_k \\$
+
+
+Therefore, the equation simplifies to:
+
+$\text{RHS} = \sum_{x=0}^{N-1} f(x) \cdot \delta_{x,k} \\$
+
+
+The summation over $x$ contains $N$ terms. However, due to the definition of the Kronecker Delta $\delta_{x,k}$:
+- For all $x \neq k$, the term is $f(x) \cdot 0 = 0$.
+- For the single case $x = k$, the term is $f(k) \cdot 1 = f(k)$.
+Thus, the sum collapses to a single term:$$\text{RHS} = f(k)$$
+
+Thus,
+
+$f(k) = \sum_{u=0}^{N-1} \alpha(u) C(u) \cos\left[\dfrac{\pi(2k+1)u}{2N}\right]$
