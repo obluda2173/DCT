@@ -37,3 +37,38 @@ function idct_d1(C)
     return f
 end
 
+
+function dct_2d(M)
+    h, w = size(M)
+
+    row_result = zeros(Float64, h, w)
+    final_result = zeros(Float64, h, w)
+
+    for i in 1:h
+        row_result[i, :] = dct_1d(M[i, :])
+    end
+
+    for j in 1:w
+        final_result[:, j] = dct_1d(row_result[:, j])
+    end
+
+    return final_result
+end
+
+
+function idct_2d(C)
+    h, w = size(C)
+
+    col_result = zeros(Float64, h, w)
+    final_pixels = zeros(Float64, h, w)
+
+    for j in 1:w
+        col_result[:, j] = idct_d1(C[:, j])
+    end
+
+    for i in 1:h
+        final_pixels[i, :] = idct_d1(col_result[i, :])
+    end
+
+    return final_pixels
+end
