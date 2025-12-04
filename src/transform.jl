@@ -1,4 +1,3 @@
-
 alpha(u, N) = return (u == 0) ? sqrt(1/N) : sqrt(2/N)
 
 function dct_1d(f)
@@ -32,7 +31,7 @@ function idct_d1(C)
             sigma += alpha(u, N) * C[u+1] * cos_term
         end
 
-        f[u+1] = sigma
+        f[k+1] = sigma
     end
 
     return f
