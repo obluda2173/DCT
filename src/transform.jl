@@ -1,4 +1,11 @@
-alpha(u, N) = return (u == 0) ? sqrt(1/N) : sqrt(2/N)
+module Transform
+
+export alpha, dct_1d, idct_1d, dct_2d, idct_2d
+
+
+function alpha(u, N)
+    return (u == 0) ? sqrt(1/N) : sqrt(2/N)
+end
 
 function dct_1d(f)
     N = length(f)
@@ -71,4 +78,6 @@ function idct_2d(C)
     end
 
     return final_pixels
+end
+
 end
