@@ -1,11 +1,3 @@
-#+title: Readme
-#+author: Erik An
-#+email: obluda2173@gmail.com
-#+date: <2025-12-04>
-#+lastmod: <2025-12-04 13:49>
-#+options: num:t
-#+startup: overview
-
 * On this project
 This project is a naive (unoptimised) JPEG encoder implemented in Julia.
 
